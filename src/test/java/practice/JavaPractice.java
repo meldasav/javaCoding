@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class JavaPractice {
     public static void main(String[] args) {
+        System.out.println(mostRepeatedElement(new String[]{"PEN", "PEN", "PENCIL", "PAPER", "PENCIL", "PENCIL"}));
+        System.out.println(mostRepeatedNumber(new int[] {1,1,1,1,2,3,4,5}));
         primeNumber(7);
 
         String word = "automation".toLowerCase();
@@ -147,5 +149,57 @@ public class JavaPractice {
         }
         return youngestName + " is the youngest person and age is " + youngestAge + ".";
     }
+
+    public static String mostRepeatedElement(String[] array) {
+
+        String mostRepeated = "";
+        int mostRepeatedTime = Integer.MIN_VALUE;
+
+        Map<String, Integer> map = new HashMap<>();
+
+        for (String s : array) {
+            if (map.containsKey(s)) map.put(s, map.get(s) + 1);
+            else map.put(s, 1);
+
+            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                String elementName = entry.getKey();
+                int count = entry.getValue();
+
+                if (count > mostRepeatedTime) {
+                    mostRepeatedTime = count;
+                    mostRepeated = elementName;
+                }
+            }
+
+        }
+        return "Most repeated element is " + mostRepeated + " and repeated " + mostRepeatedTime + " times.";
+    }
+
+    public static String mostRepeatedNumber(int[] numbers) {
+
+        int mostRepeated = Integer.MIN_VALUE;
+        int mostRepeatedTime = Integer.MIN_VALUE;
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int num : numbers) {
+            if (map.containsKey(num)) map.put(num, map.get(num) + 1);
+            else map.put(num, 1);
+
+            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+                int key = entry.getKey();
+                int value = entry.getValue();
+
+                if (value > mostRepeatedTime) {
+                    mostRepeated = key;
+                    mostRepeatedTime = value;
+                }
+
+            }
+
+        }
+        return "Most repeated number is " + mostRepeated + " and repeated " + mostRepeatedTime + " times";
+    }
+
 
 }
