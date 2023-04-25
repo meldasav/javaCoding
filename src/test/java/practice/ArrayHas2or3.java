@@ -1,10 +1,27 @@
 package practice;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ArrayHas2or3 {
     public static void main(String[] args) {
+        int[] array = {1, 2, 3, 1, 2, 3, 4, 5, 6};
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int num : array) {
+            if (map.containsKey(num)) map.put(num, map.get(num) + 1);
+            else map.put(num, 1);
+        }
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == 1) {
+                System.out.println(entry.getKey());
+            }
+        }
+
+
         arrayHas2or3_(new int[]{1, 2, 4, 5, 6});
 
         Scanner scanner = new Scanner(System.in);
@@ -24,4 +41,4 @@ public class ArrayHas2or3 {
         System.out.println(Arrays.stream(array).filter(num -> num == 2).count());
         System.out.println(Arrays.stream(array).filter(num -> num == 3).count());
     }
-}
+    }
